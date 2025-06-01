@@ -81,23 +81,3 @@ end)
   check_session || exit 0
 esac
 echo "🤠 Active"
-
-## Get current session status.
-#
-#           Check Session
-
-#          +---------------+
-#          |     Active    |
-#          +---------------+
-#                  |
-#                  |
-#                  v
-#          +---------------+
-#          |      Expired  |
-#          +---------------+
-#                  |
-#                  |
-#                  v
-#          +---------------+
-#          |  Waiting      |
-#          +---------------+
