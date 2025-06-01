@@ -51,8 +51,11 @@ check_session() {
 
 ## MAIN ##
 REGION="us-ashburn-1"
+#@TODO- add multi-region support
 TIMESTAMP=$(date +"%Y-%m-%d:%H:%M:%S")
 LOGFILE="/tmp/session_logs/session_log.txt"
+
+command -v oci || error "oci command not found."
 
 export PATH=$PATH:/opt/homebrew/bin/
 
