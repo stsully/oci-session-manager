@@ -9,33 +9,31 @@ set -e
 #
 
 error() {
-  echo "⚠️"
-  echo "error"
+  echo "⚠️ ${1}"
   return 1
 }
 
 refresh_session() {
   if ! out=$(oci session refresh ); then
-    error
+    error "can't refresh session"
   fi
   echo "refreshed"
 }
 
 start_session() {
   if ! out=$(echo DEFAULT | oci session authenticate --region $REGION); then
-    error
+    error "${out}"
   fi
   echo "started"
 }
 check_session() {
   if  ! SESSION_STATUS=$(echo "n" | oci session validate 2>&1   |head -1 |cut -d" " -f1  ); then
-    error
+    error "can't validate session"
   fi
 
   case "${SESSION_STATUS}" in
   ERROR:) # Expired or not yet started
-    echo "session expired"
-    error
+    error "session expired. Start New Session."
     return 1
     ;;
   Session) # Running
@@ -51,11 +49,15 @@ check_session() {
 
 ## MAIN ##
 REGION="us-ashburn-1"
-#@TODO- add multi-region support
-TIMESTAMP=$(date +"%Y-%m-%d:%H:%M:%S")
-LOGFILE="/tmp/session_logs/session_log.txt"
+PATH=$PATH:/opt/homebrew/bin/
+# @TODO: multi-region support
 
-command -v oci || error "oci command not found."
+if ! out=$(command -v oci ); then
+  echo "OCI"
+  echo "---"
+  echo "oci cli not available."
+  exit
+fi
 
 export PATH=$PATH:/opt/homebrew/bin/
 

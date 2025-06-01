@@ -7,16 +7,20 @@ This utility puts an icon in your menubar using [Xbar](https://github.com/matrye
 Recommend setting the refresh interval to about 5-10 mins.
 ## Getting Started
 1. install xbar from https://github.com/matryer/xbar/releases
-2. install pre-requisite OCI CLI command:
-   https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm
-3. Symlink this script into the xbar plugins directory
+2. install pre-requisite OCI CLI command.
+   ```
+   brew install oci
+   ```
+   see also: https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm
+3. symlink this script into the xbar plugins directory
   `ln -s scripts/session.sh ~/Library/Application\ Support/xbar/plugins/session.5m.sh`
 
-  should look like this:
-  ```
-  session.10m.sh -> $HOME/Development/session_manager/scripts/session.sh
-  ```
-4. You can then start a new session using OCI-> Actions -> Start Session. If a session is already running,
+   should look like this:
+   ```
+   > ls -al  ~/Library/Application\ Support/xbar/plugins
+   session.10m.sh -> $HOME/Development/session_manager/scripts/session.sh
+   ```
+4. start a new oci token-based session using OCI-> Actions -> Start Session. If a session is already running,
    it will automatically be refreshed.
 
 ## User Inputs
@@ -27,3 +31,7 @@ There are three options to manually manage sessions.
  
 ## State diagram
 ![Diagram](./images/state-diagram.png)
+
+## Troubleshooting
+* try refreshing the plugin using xbar->refresh all
+* try running the script in a terminal and checking the exit code, $?. If its non-zero there's a problem.
