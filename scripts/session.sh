@@ -17,7 +17,7 @@ refresh_session() {
   if ! out=$(oci session refresh ); then
     error "can't refresh session"
   fi
-  echo "refreshed"
+  echo "refreshed!"
 }
 
 start_session() {
