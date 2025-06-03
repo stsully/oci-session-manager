@@ -55,7 +55,7 @@ PATH=$PATH:/opt/homebrew/bin/
 if ! out=$(command -v oci ); then
   echo "OCI"
   echo "---"
-  echo "oci cli not available."
+  echo "⚠️ oci cli not available."
   exit
 fi
 
@@ -74,10 +74,10 @@ echo "--End Session | bash='$0' param1=end terminal=false";
 
 case $1 in
 start)
-  start_session || exit 1
+  start_session
   ;;
 refresh)
-  refresh_session || exit 1
+  check_session
   ;;
 end)
   rm ~/.oci/sessions/DEFAULT/token
