@@ -2,7 +2,7 @@
 OCI session manager is a menubar tool to manage OCI token authentication sessions. 
 
 I've noticed that auth sessions typically expire after about an hour. I got tired of manually doing a session authenticate command several times a day. 
-This utility puts an icon in your menubar using [Xbar](https://github.com/matryer/xbar)
+This utility puts an icon in your menubar using [Xbar](https://github.com/matryer/xbar) and refreshes the session periodically (default: 5m) to keep it active for most of the day.
 
 Recommend setting the refresh interval to about 5-10 mins.
 ## Getting Started
